@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Task 1 Mochi</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;900&display=swap">
+<style>
+:root{--bg:#fff3fa;--card:#fff;--ink:#3b2a4d;--mute:#85749a;--p1:#ff7eb9;--p2:#8b6cf0;--soft:#f4e9ff;--line:#ecd9f7;
+--g1:#ffd3ea;--g2:#e3d6ff;--g3:#cfe6ff;--g4:#d2f4e0;--g5:#fff0c0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e1729;--card:#2a2138;--ink:#f6ecff;--mute:#b5a3cc;--soft:#382b4d;--line:#46375e;--g1:#6a2f55;--g2:#4e3a8a;--g3:#2f5078;--g4:#2f6246;--g5:#6e5c20;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1e1729;--card:#2a2138;--ink:#f6ecff;--mute:#b5a3cc;--soft:#382b4d;--line:#46375e;--g1:#6a2f55;--g2:#4e3a8a;--g3:#2f5078;--g4:#2f6246;--g5:#6e5c20;color-scheme:dark}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:500 19px/1.55 Nunito,"Segoe UI",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{max-width:820px;margin:0 auto;padding:16px 18px 4px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+h1{font-size:26px;margin:0;font-weight:900}
+.chip{background:var(--soft);border-radius:99px;padding:6px 14px;font-weight:900;font-size:16px;white-space:nowrap}
+main{max-width:820px;margin:0 auto;padding:8px 18px 120px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:26px;padding:20px 22px;margin:14px 0;box-shadow:0 5px 0 var(--line)}
+.tag{display:inline-block;border-radius:99px;padding:3px 12px;font-size:15px;font-weight:900;margin-bottom:8px}
+.q{font-size:24px;font-weight:900;line-height:1.35;margin:4px 0 10px}
+.a{font-size:21px;font-weight:700;background:var(--soft);border-radius:16px;padding:12px 16px;margin:10px 0}
+.e{color:var(--mute);font-size:18px}
+button{font:inherit;font-weight:900;border:0;border-radius:18px;padding:14px 22px;min-height:52px;cursor:pointer;color:#fff;background:var(--p2);box-shadow:0 4px 0 rgba(0,0,0,.18)}
+button:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+button:disabled{opacity:.4}button.pk{background:var(--p1)} button.gh{background:var(--soft);color:var(--ink);box-shadow:0 4px 0 var(--line)}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}.row>button{flex:1 1 140px}
+.bar{height:14px;background:var(--soft);border-radius:9px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p1),var(--p2));border-radius:9px;transition:width .4s}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:2px solid var(--line);z-index:5}
+nav button{flex:1;max-width:190px;background:transparent;color:var(--mute);box-shadow:none;padding:8px 4px;font-size:15px;border-radius:16px}
+nav button b{display:block;font-size:24px}nav button.on{background:var(--soft);color:var(--p2)}
+details{background:var(--card);border:2px solid var(--line);border-radius:22px;margin:12px 0;padding:6px 18px}
+summary{font-weight:900;padding:12px 0;cursor:pointer;font-size:20px}
+.it{border-top:2px dashed var(--line);padding:12px 0}.it b{display:block}
+textarea{width:100%;box-sizing:border-box;min-height:110px;font:inherit;font-size:19px;border:2px solid var(--line);border-radius:18px;padding:12px;background:var(--bg);color:var(--ink)}
+svg{width:100%;max-width:460px;height:auto;display:block;margin:6px auto}
+svg text{fill:var(--mute);font:700 11px Nunito,sans-serif}
+mark{border-radius:8px;padding:1px 4px;color:inherit;cursor:pointer}
+.g1{background:var(--g1)}.g2{background:var(--g2)}.g3{background:var(--g3)}.g4{background:var(--g4)}.g5{background:var(--g5)}
+.hide{display:none}.big{font-size:44px;font-weight:900;text-align:center;color:var(--p2)}
+</style>
+</head>
+<body>
+<header><h1>🌸 Task 1 Mochi</h1><div class="chip" id="st"></div></header>
+<main id="m"></main>
+<nav id="nv"></nav>
+<script>
+const G={1:'Dynamic: viết 1 đối tượng',2:'Điểm đặc biệt',3:'Cách nói con số',4:'So sánh và liên kết',5:'Static',6:'Từ vựng thay thế'};
+const C=[
+[1,'Đường tăng lên đỉnh rồi giảm','S rose from X to a peak of Y in T1 before falling to Z in T2.','Sales rose from 20 to a peak of 50 in 2010 before falling to 30 in 2015.'],
+[1,'Đường giảm xuống đáy rồi hồi phục','S dropped from X to a low of Y in T1, then recovered to Z by T2.','Unemployment dropped from 9% to a low of 4% in 2008, then recovered to 7% by 2012.'],
+[1,'Đường tăng/giảm rồi đi ngang','S rose to Y in T1 and then remained stable at Y until T2.','Sales rose to 50 in 2010 and then remained stable at 50 until 2015.'],
+[1,'Đường dao động lên xuống','S fluctuated between X and Y before ending at Z.','The figure fluctuated between 20 and 35 before ending at 28.'],
+[1,'Khung A: gom số liệu 1 đối tượng','As for S, it started at X in T0, then V-ed to Y in T1, but later V-ed to Z in T2.','As for company B, it started at 8 tonnes in 2000, then increased sharply to 11 in 2005, but later plummeted to 3 in 2015.'],
+[1,'Khung B: mở bằng Starting at','Starting at X in T0, S V-ed to Y in T1 before V-ing to Z in T2.','Starting at 8 tonnes in 2000, the waste rose to 11 in 2005 before plummeting to 3 in 2015.'],
+[1,'Khung C: tách 2 câu khi chuỗi dài','S stood at X in T0. This figure, which had V-ed to Y by T1, V-ed to Z in T2.','Waste stood at 8 tonnes in 2000. This figure, which had risen to 11 by 2005, fell to 3 in 2015.'],
+[1,'Quy tắc nối các mảnh','Tối đa 3 mảnh một câu. Dài hơn thì tách bằng khung C.','Dùng then / before V-ing / but later / after which để nối.'],
+[2,'Hai đường cắt nhau','The year T marked the point where A overtook B.','The year 2015 marked the point where grants overtook borrowings.'],
+[2,'Đỉnh / đáy, chủ ngữ là năm','T marked the peak of S, at X. / The highest level was recorded in T.','2010 marked the peak of sales, at 50.'],
+[2,'Điểm đầu và điểm cuối','S started at X in T0 and finished at Y at the end of the period.','The figure started at around 8 in 2000 and finished at exactly 3 in 2015.'],
+[2,'Lớn nhất: hạng mục / led with','A was the biggest, at X%. / A led with X%, followed by B (Y%).','Rent led with 40%, followed by food (25%).'],
+[2,'Lớn nhất: con số làm chủ ngữ','The largest share, at X%, went to A.','The largest share, at 40%, went to rent.'],
+[2,'Nhỏ nhất','A recorded the smallest figure, at only X%. / The lowest figure, X%, belonged to A.','Other items recorded the smallest figure, at only 8%.'],
+[3,'Một con số, nhiều chủ ngữ (20%)','Males account for 20% of the class. / One fifth of students are male. / One in five students is male. / There is one male in every five students.','Đổi chủ ngữ: nhóm, con số, One in…, There be.'],
+[3,'Phân số','20% = one fifth | 25% = a quarter | 50% = half | 75% = three quarters | 10% = one tenth','Tử là số đếm, mẫu là số thứ tự. Tử lớn hơn 1 thì mẫu thêm s: two fifths.'],
+[3,'Xấp xỉ','nearly / just under / just over / approximately a fifth','Just under a fifth, at 18% to be exact.'],
+[3,'Gấp 3 lần','tripled = increased threefold = rose by a factor of three','Sales more than tripled to 3,100 over the decade.'],
+[3,'Giảm một nửa','halved = fell by half = fell to half the initial figure','Profits halved in the last six months.'],
+[3,'Cả hai tăng, một cái tăng mạnh hơn','There was a twofold increase in A, and even a larger extent of growth in B, from X to Y.','There was a nearly twofold increase in housing costs, and even a larger extent of growth in leisure, from 9% to 22%.'],
+[4,'A tăng, B giảm: câu đối lập','While A and B rose, the opposite was true for C.','While Colombia and Myanmar rose, the opposite was true for Japan.'],
+[4,'Nối sang đối tượng khác','A rose to X, and the same is true for B. / UK does the same for 55%.','Sweden recycles 25% of its waste, while the UK does the same for 55%.'],
+[4,'whose: mở body theo nhóm','Regarding A and B, whose figures saw an upward trend, …','Looking at the lines whose figures increased, …'],
+[4,'So sánh gấp / thua xa','A was twice as high as B. / A equalled one-fourth that of B. / A registered a drop much less significant than the aforementioned.','The 1pm show drew 1.2 million, equalling one-fourth that of the 6pm show.'],
+[5,'Nổi ở chỗ này, mờ ở chỗ khác','A featured prominently only in X at Y%, with negligible usage elsewhere.','Petroleum featured prominently only in Thailand at 36%, with negligible usage of 2% to 3% elsewhere.'],
+[5,'Hai số liệu hai nhóm','X% and Y% respectively. / compared with / whereas','Asia and Europe accounted for 37% and 35% respectively.'],
+[5,'Các số liệu gần bằng nhau','A and B recorded similar figures, at X% and Y%.','Snooker and tennis recorded similar figures, at 30% and 29%.'],
+[5,'Một nhóm nhỏ bị nhóm lớn lấn át','A, at X%, was far outnumbered by B, at Y%.','Males, at 20%, were far outnumbered by females, at 80%.'],
+];
+const P=[
+{n:'25%',t:'Nữ sinh chiếm 25% lớp. Viết 3 câu, chủ ngữ lần lượt là: con số / nhóm đối tượng / There be.',m:['A quarter of the students in the class are female.','Females account for 25% of the class.','There is one female student in every four.']},
+{c:{t:'bar',x:['Rent','Food','Transp.','Leisure','Other'],y:[[40,25,15,12,8]]},t:'Viết 3 câu về Rent: hạng mục làm chủ ngữ / con số làm chủ ngữ / led with… followed by…',m:['Rent was the biggest expense, at 40%.','The largest share, at 40%, went to rent.','Rent led with 40%, followed by food (25%).']},
+{c:{t:'bar',x:['Rent','Food','Transp.','Leisure','Other'],y:[[40,25,15,12,8]]},t:'Viết 2 câu về Other (8%): recorded the smallest figure / con số làm chủ ngữ + belonged to.',m:['Other items recorded the smallest figure, at only 8%.','The lowest figure, 8%, belonged to other items.']},
+{c:{t:'line',x:['2000','2010','2015'],y:[[20,50,30]]},t:'Viết 3 câu về đỉnh: chủ ngữ là sales / chủ ngữ là năm 2010 / There was…',m:['Sales peaked at 50 in 2010.','2010 marked the peak of sales, at 50.','There was a peak of 50 in 2010, before sales fell to 30 in 2015.']},
+{c:{t:'line',x:['2000','2008','2012'],y:[[9,4,7]]},t:'Thất nghiệp (%). Viết 1 câu dùng hit a low of… và recovered.',m:['Unemployment hit a low of 4% in 2008, having fallen from 9% in 2000, before recovering to 7% in 2012.']},
+{c:{t:'line',x:['2000','2005','2010'],y:[[30,45,60],[50,45,40]],n:['A','B']},t:'Viết 2 câu về điểm giao: the lines intersected / A overtook B.',m:['The two lines intersected at 45 in 2005.','After 2005, A overtook B and ended at 60 against 40.']}
+];
+const X=[
+{c:{t:'line',x:['2000','2005','2010','2015'],y:[[20,45,60,40]]},s:'{1:Starting at 20% in 2000, the proportion of Internet users rose sharply to 45% in 2005 before peaking at 60% in 2010.} It then declined to 40% in 2015, {3:exactly double the initial figure}.'},
+{c:{t:'bar',x:['Rent','Food','Transp.','Leisure','Other'],y:[[40,25,15,12,8]]},s:'{2:Rent led with 40%, followed by food (25%).} {5:Transport and leisure recorded similar figures, at 15% and 12% respectively}, while {2:other items recorded the smallest figure, at only 8%}. {3:Rent alone accounted for two fifths of the spending.}'}
+];
+const V=[['Tiền',[['spending','expenditure','outlay','budget allocation'],['income','earnings','revenue','takings'],['cost','price','fee','charge']]],
+['Người',[['population','population size','number of residents'],['workforce','labour force','employees'],['viewers','viewership','audience'],['teachers','teaching staff','educators'],['age group','age bracket','age cohort']]],
+['Năng lượng',[['electricity generation','electricity production','power output'],['fossil fuels','coal and oil','conventional sources'],['renewable sources','eco-friendly sources','clean energy']]],
+['Thời tiết',[['rainfall','precipitation'],['temperature','how hot it is','heat level']]],
+['Giao thông, du lịch',[['transport','commuting','travel'],['tourists','visitors','travellers'],['commuters','passengers']]],
+['Hoạt động',[['pastimes','hobbies','leisure activities'],['spent time on','allocated hours to','devoted time to']]],
+['Sản xuất, xuất khẩu',[['output','production','yield'],['exports','goods sold abroad','overseas sales'],['goods','products','merchandise']]],
+['Mức độ phổ biến',[['popular','prevalent','favoured','in demand'],['unpopular','least favoured','out of favour']]]];
+V.forEach(t=>t[1].forEach(s=>C.push([6,t[0]+': '+s[0],s.join(' = '),'Dùng ít nhất 2 từ trong nhóm này để paraphrase.'])));
+const IV=[0,1,3,7,14];let S={c:{},d:{},e:[]};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem('t1m')||'{}'))}catch(e){}
+const sv=()=>{try{localStorage.setItem('t1m',JSON.stringify(S))}catch(e){}};
+const day=o=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4+o*864e5).toISOString().slice(0,10);
+const $=s=>document.querySelector(s),M=$('#m');
+let Q=[],fl=false,tab=0,pi=0,xi=0,sh=false,hint='Chạm vào phần tô màu để xem tên công thức.';
+function streak(){let n=0,o=S.d[day(0)]>0?0:-1;while(S.d[day(o)]>0){n++;o--}return n}
+function buildQ(n){const t=day(0),du=[],nw=[];C.forEach((c,i)=>{const s=S.c[i];if(!s)nw.push(i);else if(s.due<=t)du.push(i)});Q=du.slice(0,Math.ceil(n*.6));Q.push(...nw.slice(0,n-Q.length));if(Q.length<n)Q.push(...du.slice(Q.length,n))}
+function ans(ok){const id=Q.shift(),s=S.c[id]||{b:0};if(ok){s.b=Math.min(4,s.b+1);S.d[day(0)]=(S.d[day(0)]||0)+1}else{s.b=0;Q.push(id)}
+const d=new Date(Date.now()+(ok?IV[s.b]:0)*864e5);s.due=day(ok?IV[s.b]:0);S.c[id]=s;sv();fl=false;draw()}
+function tg(g){return `<span class="tag g${g>5?4:g}">${G[g]}</span>`}
+function chart(c){const W=320,H=150,L=26,R=10,T=18,B=24,m=Math.max(...c.y.flat())*1.15,n=c.x.length,cl=['var(--p1)','var(--p2)'];
+const Y=v=>T+(H-T-B)*(1-v/m);let o=`<svg viewBox="0 0 ${W} ${H}" role="img"><line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" stroke="var(--line)" stroke-width="2"/>`;
+if(c.t=='bar'){const w=(W-L-R)/n;c.y[0].forEach((v,i)=>{const x=L+i*w+w*.18;o+=`<rect x="${x}" y="${Y(v)}" width="${w*.64}" height="${H-B-Y(v)}" rx="6" fill="${cl[i%2]}"/><text x="${x+w*.32}" y="${Y(v)-4}" text-anchor="middle">${v}</text><text x="${x+w*.32}" y="${H-8}" text-anchor="middle">${c.x[i]}</text>`})}
+else{const X=i=>L+8+i*(W-L-R-16)/(n-1);c.y.forEach((r,k)=>{o+=`<polyline fill="none" stroke="${cl[k]}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="${r.map((v,i)=>X(i)+','+Y(v)).join(' ')}"/>`;r.forEach((v,i)=>o+=`<circle cx="${X(i)}" cy="${Y(v)}" r="5" fill="${cl[k]}"/><text x="${X(i)}" y="${Y(v)-9}" text-anchor="middle">${v}</text>`)});c.x.forEach((x,i)=>o+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle">${x}</text>`);if(c.n)o+=c.n.map((a,k)=>`<text x="${W-60+k*28}" y="12" style="fill:${cl[k]}">${a}</text>`).join('')}
+return o+'</svg>'}
+function draw(){document.querySelectorAll('#nv button').forEach((b,i)=>b.classList.toggle('on',i==tab));$('#st').textContent='🔥 '+streak()+' ngày';[home,lib,prac,samp,voc][tab]()}
+function home(){const n=S.d[day(0)]||0,p=Math.min(100,n*10);let h=`<div class="card"><b>Hôm nay: ${n}/10 thẻ</b><div class="bar"><i style="width:${p}%"></i></div></div>`;
+if(!Q.length){h+=`<div class="card"><div class="q">${n>=10?'Xong mục tiêu rồi! 🎉':'Hết thẻ cần ôn hôm nay ✨'}</div><div class="row"><button class="pk" onclick="buildQ(5);fl=false;draw()">Học thêm 5 thẻ</button></div></div>`}
+else{const c=C[Q[0]];h+=`<div class="card">${tg(c[0])}<div class="q">${c[1]}</div>`+(fl?`<div class="a">${c[2]}</div><div class="e">${c[3]}</div><div class="q" style="font-size:19px;margin-top:14px">✏️ ${c[0]==6?'Viết 1 câu về chart bất kỳ, dùng 2 từ trong nhóm này.':'Viết 1 câu MỚI theo công thức này (đổi chủ đề, tự nghĩ số liệu).'}</div><textarea id="wt" oninput="$('#ok').disabled=this.value.trim().length<8" placeholder="Gõ câu của ông…"></textarea><div class="row"><button class="gh" onclick="ans(0)">Chưa nhớ</button><button class="gh" onclick="cpw()">Copy gửi Claude</button><button class="pk" id="ok" disabled onclick="ans(1)">Nhớ rồi</button></div>`:`<div class="row"><button onclick="fl=true;draw()">Lật thẻ</button></div>`)+`</div>`}
+M.innerHTML=h}
+function lib(){M.innerHTML=Object.keys(G).map(g=>`<details><summary>${G[g]}</summary>`+C.filter(c=>c[0]==g).map(c=>`<div class="it"><b>${c[1]}</b>${c[2]}<div class="e">${c[3]}</div></div>`).join('')+`</details>`).join('')}
+function prac(){const p=P[pi];M.innerHTML=`<div class="card"><span class="tag g2">Bài ${pi+1}/${P.length}</span>${p.c?chart(p.c):`<div class="big">${p.n}</div>`}<div class="q" style="font-size:20px">${p.t}</div><textarea id="tx" placeholder="Viết câu của ông ở đây…"></textarea>
+<div class="row"><button class="gh" onclick="sh=!sh;prac()">Xem câu mẫu</button><button class="gh" onclick="cp()">Copy gửi Claude</button><button class="gh" onclick="er()">Lưu vào sổ lỗi</button></div>
+<div class="a ${sh?'':'hide'}">${p.m.join('<br>')}</div><div class="row"><button onclick="pi=(pi+P.length-1)%P.length;sh=false;prac()">‹ Trước</button><button class="pk" onclick="pi=(pi+1)%P.length;sh=false;prac()">Bài tiếp ›</button></div></div>
+<div class="card"><b>Sổ lỗi sai (${S.e.length})</b>${S.e.map((e,i)=>`<div class="it"><span class="e">${e.t}</span><br>${e.s}<br><button class="gh" style="min-height:40px;padding:6px 14px" onclick="S.e.splice(${i},1);sv();prac()">Xóa</button></div>`).join('')}</div>`}
+function cp(){const s=$('#tx').value,t=`Chấm giúp mình câu IELTS Task 1.\nĐề: ${P[pi].t}\nCâu của mình: ${s}`;try{navigator.clipboard.writeText(t).then(()=>alert('Đã copy. Dán cho Claude nhé!'),()=>alert(t))}catch(e){alert(t)}}
+function er(){const s=$('#tx').value.trim();if(!s)return;S.e.unshift({t:P[pi].t.slice(0,70),s});sv();prac()}
+function samp(){const x=X[xi];M.innerHTML=`<div class="card">${chart(x.c)}<div>${x.s.replace(/\{(\d):([^}]*)\}/g,'<mark class="g$1" data-g="$1">$2</mark>')}</div><div class="e" id="hn" style="margin-top:12px">${hint}</div>
+<div class="row"><button class="pk" onclick="xi=(xi+1)%X.length;samp()">Đoạn mẫu khác</button></div></div>`;M.querySelectorAll('mark').forEach(k=>k.onclick=()=>{hint='Công thức: '+G[k.dataset.g];$('#hn').textContent=hint})}
+function cpw(){const c=C[Q[0]],s=$('#wt').value,t=`Chấm giúp mình câu IELTS Task 1.\nCông thức: ${c[2]}\nCâu của mình: ${s}`;try{navigator.clipboard.writeText(t).then(()=>alert('Đã copy. Dán cho Claude nhé!'),()=>alert(t))}catch(e){alert(t)}}
+let vq=null,vm=0;
+function vNew(){const A=V.flatMap(t=>t[1].map(s=>({t:t[0],s}))),a=A[Math.random()*A.length|0],w=a.s[Math.random()*a.s.length|0],c=a.s.filter(x=>x!=w),cr=c[Math.random()*c.length|0],ds=A.filter(x=>x!=a).flatMap(x=>x.s).sort(()=>Math.random()-.5).slice(0,3);vq={a,w,cr,o:[cr,...ds].sort(()=>Math.random()-.5),sel:''}}
+function voc(){if(!vq)vNew();const q=vq;let h=`<div class="row" style="margin:0 0 4px"><button class="${vm?'gh':'pk'}" onclick="vm=0;vNew();voc()">Chọn đáp án</button><button class="${vm?'pk':'gh'}" onclick="vm=1;vNew();voc()">Nhớ rồi gõ</button></div><div class="card"><span class="tag g3">${q.a.t}</span><div class="q">`;
+if(!vm){h+=`Từ nào thay được “${q.w}”?</div>`+q.o.map(o=>`<button class="${q.sel&&o==q.cr?'pk':'gh'}" style="display:block;width:100%;margin:10px 0;text-align:left" onclick="if(!vq.sel){vq.sel='${o}';voc()}">${o}</button>`).join('')+(q.sel?`<div class="a">${q.sel==q.cr?'Đúng rồi! 🎉':'Chưa đúng.'} Cả nhóm: ${q.a.s.join(' = ')}</div>`:'')}
+else{h+=`Gõ 2 cách khác để nói “${q.w}”</div><textarea placeholder="Gõ từ ông nhớ được…"></textarea><div class="row"><button class="gh" onclick="$('#vr').classList.remove('hide')">Xem đáp án</button></div><div class="a hide" id="vr">${q.a.s.join(' = ')}</div>`}
+M.innerHTML=h+`<div class="row"><button class="pk" onclick="vNew();voc()">Câu tiếp ›</button></div></div>`}
+$('#nv').innerHTML=[['🌸','Hôm nay'],['📚','Thư viện'],['✏️','Luyện viết'],['🖼️','Bài mẫu'],['🧠','Từ vựng']].map((t,i)=>`<button onclick="tab=${i};draw();scrollTo(0,0)"><b>${t[0]}</b>${t[1]}</button>`).join('');
+buildQ(10);draw();
+</script>
+</body>
+</html>
